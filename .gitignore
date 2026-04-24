@@ -1,0 +1,8 @@
+node_modules/
+.vercel/
+.env
+.env.local
+.env*.local
+
+# system-prompts/ is populated at build time from ../prompts/ — not source code
+system-prompts/*.md

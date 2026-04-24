@@ -1,0 +1,20 @@
+{
+  "name": "prompt-engineering-toolkit-companion",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Companion web app for the Prompt Engineering Toolkit. Ships three evaluators powered by Anthropic's API behind a rate-limited proxy. Fetches canonical system prompts from the toolkit repo at build time.",
+  "type": "module",
+  "scripts": {
+    "sync-prompts": "node scripts/sync-prompts.js",
+    "build": "npm run sync-prompts",
+    "dev": "vercel dev"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.39.0",
+    "@upstash/ratelimit": "^2.0.3",
+    "@upstash/redis": "^1.34.3"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

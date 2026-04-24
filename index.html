@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Prompt Engineering Toolkit — Companion App</title>
+<meta name="description" content="Companion app for the Prompt Engineering Toolkit. Three research-backed evaluators for prompts, GitHub issues, and live UIs." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" />
+<link rel="stylesheet" href="/shared/styles.css" />
+</head>
+<body>
+<header class="site-header">
+  <a href="/" class="brand">
+    <span class="brand-mark">PTK · Companion</span>
+    <span class="brand-title">Prompt Engineering Toolkit</span>
+  </a>
+  <nav>
+    <a href="/" aria-current="page">Home</a>
+    <a href="https://github.com/Doberjohn/prompt-engineering-toolkit" target="_blank" rel="noopener">GitHub</a>
+  </nav>
+</header>
+
+<main class="app-shell">
+  <section class="landing-hero">
+    <div class="eyebrow">Research-backed prompt &amp; issue evaluation</div>
+    <h1>See the toolkit in action.</h1>
+    <p class="lede">
+      Three evaluators drawn directly from the
+      <a href="https://github.com/Doberjohn/prompt-engineering-toolkit" target="_blank" rel="noopener">Prompt Engineering Toolkit</a>.
+      Paste a prompt, a GitHub issue, or a URL. Get back a calibrated, evidence-anchored evaluation
+      in the same style the framework teaches. No API key required.
+    </p>
+    <div class="meta-row">
+      <span>Powered by Claude</span>
+      <span>10 evaluations per day per visitor</span>
+      <span>Open source</span>
+    </div>
+  </section>
+
+  <section>
+    <h2 class="visually-hidden">Evaluators</h2>
+    <div class="card-grid">
+
+      <a href="/prompt-evaluator" class="evaluator-card">
+        <span class="card-index">01 / Description</span>
+        <h3>Prompt Evaluator</h3>
+        <p>
+          Score any prompt across the four PPEP dimensions — Product, Process, Performance,
+          Epistemics — calibrated against nine reference anchors spanning 1/10 to 10/10.
+        </p>
+        <span class="card-cta">Open evaluator</span>
+      </a>
+
+      <a href="/issue-evaluator" class="evaluator-card">
+        <span class="card-index">02 / Discernment</span>
+        <h3>Issue Evaluator</h3>
+        <p>
+          Decide whether a GitHub implementation plan issue is safe to hand to an AI coding agent.
+          Eight-section weighted rubric, severity findings, automatic rewrite suggestions.
+        </p>
+        <span class="card-cta">Open evaluator</span>
+      </a>
+
+      <a href="/uiux-url-evaluator" class="evaluator-card">
+        <span class="card-index">03 / Discernment</span>
+        <h3>UI/UX URL Evaluator</h3>
+        <p>
+          Audit a live URL against Nielsen's heuristics, WCAG 2.2 AA, and a 20-dimension scoring system.
+          Produces severity findings with suggested remediation.
+        </p>
+        <span class="card-cta">Open evaluator</span>
+      </a>
+
+    </div>
+  </section>
+
+  <section style="margin-top: var(--space-7);">
+    <div class="notice">
+      <strong>How this works</strong>
+      The companion app is a thin proxy in front of Anthropic's API. Each request uses the canonical
+      system prompt from the toolkit's <code>prompts/</code> folder, so the app always matches what
+      the repository teaches. Your evaluations are not logged or stored.
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div>
+    PTK Companion · <a href="https://github.com/Doberjohn/prompt-engineering-toolkit" target="_blank" rel="noopener">Source on GitHub</a>
+  </div>
+  <div>Built with Claude · MIT license</div>
+</footer>
+</body>
+</html>

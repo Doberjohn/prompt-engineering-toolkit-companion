@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>UI/UX URL Evaluator — PTK Companion</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" />
+<link rel="stylesheet" href="/shared/styles.css" />
+</head>
+<body>
+<header class="site-header">
+  <a href="/" class="brand">
+    <span class="brand-mark">PTK · Companion</span>
+    <span class="brand-title">Prompt Engineering Toolkit</span>
+  </a>
+  <nav>
+    <a href="/">Home</a>
+    <a href="/prompt-evaluator">Prompt</a>
+    <a href="/issue-evaluator">Issue</a>
+    <a href="/uiux-url-evaluator" aria-current="page">UI/UX URL</a>
+    <a href="https://github.com/Doberjohn/prompt-engineering-toolkit" target="_blank" rel="noopener">GitHub</a>
+  </nav>
+</header>
+
+<main class="app-shell">
+  <div class="page-head">
+    <div class="eyebrow">03 / Discernment</div>
+    <h1>UI/UX URL Evaluator</h1>
+    <p class="lede">
+      Audit a live URL against Nielsen's 10 Usability Heuristics, WCAG 2.2 AA, and a 20-dimension
+      scoring system covering both UI (objective) and UX (heuristic inference). Produces severity
+      findings with recommended fixes.
+    </p>
+  </div>
+
+  <div class="notice">
+    <strong>How URL evaluation works</strong>
+    The evaluator does not fetch the URL itself. It works from the URL and any extra context you
+    provide (target audience, user flows, known constraints). For the deepest audit, add a short
+    description of what the page is for and who uses it.
+  </div>
+
+  <form id="evaluator-form" data-evaluator="uiux-url" class="workbench">
+    <section class="panel">
+      <div class="panel-head">
+        <h2>Input</h2>
+        <span class="meta">URL &amp; CONTEXT</span>
+      </div>
+
+      <div class="field">
+        <label for="url">URL to evaluate</label>
+        <input
+          type="url"
+          id="url"
+          name="url"
+          placeholder="https://example.com/some-page"
+          required
+        />
+        <div class="hint">Must start with http:// or https://</div>
+      </div>
+
+      <div class="field">
+        <label for="userContent">Additional context (optional but strongly recommended)</label>
+        <textarea
+          id="userContent"
+          name="userContent"
+          placeholder="What is this page for? Who is the target audience? What user flow should it support? Any known constraints or previously identified problems? The more context you provide, the more accurate the evaluation."
+          style="min-height: 180px;"
+        ></textarea>
+        <div class="hint">Optional. Max 50,000 characters.</div>
+      </div>
+
+      <div class="btn-row">
+        <button type="submit" class="btn btn-primary">Evaluate</button>
+        <button type="button" class="btn btn-ghost" data-action="clear">Clear</button>
+        <div class="rate-info" id="rate-info"></div>
+      </div>
+    </section>
+
+    <section class="panel">
+      <div class="panel-head">
+        <h2>Evaluation</h2>
+        <span class="meta">RESULT</span>
+      </div>
+      <div id="status" class="status" hidden></div>
+      <div id="output" class="output is-empty">Results will appear here after evaluation.</div>
+    </section>
+  </form>
+</main>
+
+<footer class="site-footer">
+  <div>PTK Companion · <a href="https://github.com/Doberjohn/prompt-engineering-toolkit" target="_blank" rel="noopener">Source on GitHub</a></div>
+  <div>Built with Claude · MIT license</div>
+</footer>
+
+<script type="module" src="/shared/client.js"></script>
+</body>
+</html>
