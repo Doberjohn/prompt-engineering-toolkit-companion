@@ -113,15 +113,14 @@ The sync script also strips human-facing preambles from the UI/UX mode file (the
 
 Documented here so future maintainers (including future me) know what was deferred and why.
 
-1. **No streaming.** Responses take 15-45 seconds and show a static spinner. Streaming (SSE from the Anthropic SDK, parsed on the client) would feel dramatically better. Deferred because the non-streaming path is simpler to debug on v1.
-2. **`marked` from CDN.** If jsdelivr has an outage, markdown rendering breaks. Self-hosting `marked.esm.js` would fix this. Deferred; acceptable for a demo.
-3. **Cold-start latency.** First request after ~10 minutes of inactivity has an extra 1-2 second penalty. Inherent to serverless. Fixing requires either Vercel Pro's keep-warm or migrating to an edge runtime, which loses Node `fs` access (and therefore our system-prompt loading approach). Deferred.
-4. **No retry on upstream 429.** If Anthropic rate-limits the proxy, the user gets a one-line error with no retry. Exponential backoff would be a small, valuable improvement.
-5. **Rate limit is per-IP, not per-session.** Users behind shared NAT share a quota. Acceptable for a demo but worth noting.
-6. **`MAX_TOKENS` is hardcoded to 8000.** Sufficient for all three evaluators today. If the issue or UI/UX rubrics grow, this becomes a ceiling to revisit.
-7. **No request logging or analytics.** Intentional (privacy), but makes debugging production issues harder. If abuse becomes a real concern, structured logs to Vercel's console (no user content, just outcomes) would help without compromising privacy.
-8. **Build depends on GitHub raw availability.** If `raw.githubusercontent.com` is down at build time, deployment fails. Historically this is reliable (enterprise-grade uptime), but it is a new external dependency compared to the same-repo version. Mitigation: the build script aborts loudly rather than silently deploying stale content.
-9. **Manual redeploy coupling.** Prompt changes in the toolkit don't automatically propagate without the deploy-hook setup. Acceptable tradeoff for the independence gain, but worth knowing.
+1. **`marked` from CDN.** If jsdelivr has an outage, markdown rendering breaks. Self-hosting `marked.esm.js` would fix this. Deferred; acceptable for a demo.
+2. **Cold-start latency.** First request after ~10 minutes of inactivity has an extra 1-2 second penalty. Inherent to serverless. Fixing requires either Vercel Pro's keep-warm or migrating to an edge runtime, which loses Node `fs` access (and therefore our system-prompt loading approach). Deferred.
+3. **No retry on upstream 429.** If Anthropic rate-limits the proxy, the user gets a one-line error with no retry. Exponential backoff would be a small, valuable improvement.
+4. **Rate limit is per-IP, not per-session.** Users behind shared NAT share a quota. Acceptable for a demo but worth noting.
+5. **`MAX_TOKENS` is hardcoded to 8000.** Sufficient for all three evaluators today. If the issue or UI/UX rubrics grow, this becomes a ceiling to revisit.
+6. **No request logging or analytics.** Intentional (privacy), but makes debugging production issues harder. If abuse becomes a real concern, structured logs to Vercel's console (no user content, just outcomes) would help without compromising privacy.
+7. **Build depends on GitHub raw availability.** If `raw.githubusercontent.com` is down at build time, deployment fails. Historically this is reliable (enterprise-grade uptime), but it is a new external dependency compared to the same-repo version. Mitigation: the build script aborts loudly rather than silently deploying stale content.
+8. **Manual redeploy coupling.** Prompt changes in the toolkit don't automatically propagate without the deploy-hook setup. Acceptable tradeoff for the independence gain, but worth knowing.
 
 ## Cost ceiling
 
